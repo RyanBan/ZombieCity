@@ -34,17 +34,19 @@ public class ZombieCharacterControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //attack when collide with the character 
         if(collision.gameObject.name == "MainChar")
         {
             m_animator.SetTrigger("Attack");   
             Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
         }
+        //go back and forth
         if (collision.gameObject.name.Contains("Wall"))
         {
             transform.Rotate(0, turnAngle, 0);
             Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
         }
-
+        //dead when collide with a car
         if (collision.gameObject.name.Contains("Car"))
         {
             Debug.Log(gameObject.name + " was triggered by " + collision.gameObject.name);

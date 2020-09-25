@@ -13,6 +13,7 @@ public class CarController : MonoBehaviour
         transform.position += transform.forward * 10 * Time.deltaTime;
     }
 
+    // Cars will move back and fofrth between two points
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("Wall"))
