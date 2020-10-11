@@ -11,6 +11,7 @@ public class CarController : MonoBehaviour
     void FixedUpdate()
     {
         transform.position += transform.forward * 10 * Time.deltaTime;
+
     }
 
     // Cars will move back and fofrth between two points

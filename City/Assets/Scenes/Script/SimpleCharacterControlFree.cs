@@ -96,7 +96,10 @@ public class SimpleCharacterControlFree : MonoBehaviour
             }
             if (m_collisions.Count == 0) { m_isGrounded = false; }
         }
+
     }
+
+
 
     private void OnCollisionExit(Collision collision)
     {
@@ -124,6 +127,18 @@ public class SimpleCharacterControlFree : MonoBehaviour
         }
 
         m_wasGrounded = m_isGrounded;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name.Contains("Cube"))
+        {
+            Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
+            Animator anim = other.GetComponentInParent<Animator>();
+            if (Input.GetKeyDown(KeyCode.E))
+                anim.SetTrigger("OpenClose");
+        }
+
     }
 
     private void TankUpdate()
