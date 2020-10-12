@@ -133,7 +133,7 @@ public class SimpleCharacterControlFree : MonoBehaviour
     {
         if (other.gameObject.name.Contains("Cube"))
         {
-            Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
+            //Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
             Animator anim = other.GetComponentInParent<Animator>();
             if (Input.GetKeyDown(KeyCode.E))
                 anim.SetTrigger("OpenClose");

@@ -38,18 +38,18 @@ public class ZombieCharacterControl : MonoBehaviour
         if(collision.gameObject.name == "MainChar")
         {
             m_animator.SetTrigger("Attack");   
-            Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
+            //Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
         }
         //go back and forth
         if (collision.gameObject.name.Contains("Wall"))
         {
             transform.Rotate(0, turnAngle, 0);
-            Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
+            //Debug.Log(gameObject.name + " has collided with " + collision.gameObject.name);
         }
         //dead when collide with a car
         if (collision.gameObject.name.Contains("Car"))
         {
-            Debug.Log(gameObject.name + " was triggered by " + collision.gameObject.name);
+            //Debug.Log(gameObject.name + " was triggered by " + collision.gameObject.name);
             m_animator.SetTrigger("Dead");
             m_moveSpeed = 0;
             m_rigidBody.AddForce(new Vector3(0, 500, 500));
@@ -60,7 +60,7 @@ public class ZombieCharacterControl : MonoBehaviour
     {
         if (other.gameObject.name.Contains("Wall"))
         {
-            Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
+            //Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
             transform.Rotate(0, turnAngle, 0);
         }
     }

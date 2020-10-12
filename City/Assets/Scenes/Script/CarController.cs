@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
     {
         if (other.gameObject.name.Contains("Wall"))
         {
-            Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
+            //Debug.Log(gameObject.name + "was triggered by" + other.gameObject.name);
             transform.Rotate(0, turnAngle, 0);
         }
     }
@@ -33,7 +33,7 @@ public class CarController : MonoBehaviour
         if (collision.gameObject.name.Contains("Wall"))
         {
             transform.Rotate(0, turnAngle, 0);
-            Debug.Log(gameObject.name + "has collided with" + collision.gameObject.name);
+            //Debug.Log(gameObject.name + "has collided with" + collision.gameObject.name);
         }
     }
 }

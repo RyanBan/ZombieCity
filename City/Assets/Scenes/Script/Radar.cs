@@ -45,7 +45,7 @@ public class Radar : MonoBehaviour
 			float distanceToTarget = Vector3.Distance(targetPos, playerPos);
 			if( (distanceToTarget <= insideRadarDistance) ){
 				Vector3 normalisedTargetPosiiton = NormaisedPosition(playerPos, targetPos);
-				print (normalisedTargetPosiiton);
+				//print (normalisedTargetPosiiton);
 				Vector2 blipPosition = CalculateBlipPosition(normalisedTargetPosiiton);
 				DrawBlip(blipPosition, prefabBlip);
 			}
