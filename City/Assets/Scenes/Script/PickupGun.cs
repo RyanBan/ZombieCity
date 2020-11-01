@@ -33,16 +33,19 @@ public class PickupGun : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter(Collider collision)
     {
-
-        if (!AlreadyHalreadyHasChildObject())
+        if(collision.gameObject.name == "MainChar")
         {
-            equip();
+            if (!AlreadyHalreadyHasChildObject())
+            {
+                equip();
+            }
+            else
+            {
+                remove();
+                equip();
+            }
         }
-        else
-        {
-            remove();
-            equip();
-        }
+        
 
     }
 
