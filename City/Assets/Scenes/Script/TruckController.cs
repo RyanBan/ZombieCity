@@ -6,7 +6,7 @@ public class TruckController : MonoBehaviour
 {
     // Start is called before the first frame update
     private float turnAngle = 180;
-    private float moveSpeed = 8;
+    public float moveSpeed = 8;
     public float health = 50f;
     private AudioSource audioSource;
     [SerializeField] private AudioClip boom;
@@ -44,6 +44,11 @@ public class TruckController : MonoBehaviour
         audioSource.PlayOneShot(boom);
         audioSource.PlayOneShot(stop);
         Destroy(gameObject.GetComponent<Collider>());
+    }
+
+    public void Stop_()
+    {
+        moveSpeed = 0;
     }
     // Update is called once per frame
     void FixedUpdate()

@@ -7,6 +7,10 @@ TagManager:
   - Zombie
   - Blip
   - MovingCar
+  - Stop
+  - Stop2
+  - Trafficlight
+  - Stop1
   layers:
   - Default
   - TransparentFX

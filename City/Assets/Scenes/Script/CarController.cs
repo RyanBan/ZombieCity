@@ -46,6 +46,10 @@ public class CarController : MonoBehaviour
         flare.Play();
         shockWave.Play();
     }
+    public void Stop_()
+    {
+        moveSpeed = 0;
+    }
 
     // Cars will move back and fofrth between two points
     private void OnTriggerEnter(Collider other)

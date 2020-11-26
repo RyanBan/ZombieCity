@@ -5,19 +5,18 @@ public class ZombieCharacterControl : MonoBehaviour
 {
     private enum ControlMode
     {
-        /// <summary>
-        /// Up moves the character forward, left and right turn the character gradually and down moves the character backwards
-        /// </summary>
-        Tank
+        Walk,
+        Wander,
+        Run
     }
 
-    [SerializeField] private float m_moveSpeed = 2;
-    [SerializeField] private float m_turnSpeed = 200;
+    [SerializeField] public float m_moveSpeed = 2;
+    [SerializeField] public float m_turnSpeed = 200;
 
     [SerializeField] private Animator m_animator;
     [SerializeField] private Rigidbody m_rigidBody;
 
-    [SerializeField] private ControlMode m_controlMode = ControlMode.Tank;
+    [SerializeField] private ControlMode m_controlMode = ControlMode.Walk;
     [SerializeField] private AudioClip die;
     private AudioSource audioSource;
 
@@ -29,12 +28,13 @@ public class ZombieCharacterControl : MonoBehaviour
     private readonly float m_interpolation = 10;
 
 
+
     public float health = 50f;
 
     void Awake()
     {
         if(!m_animator) { gameObject.GetComponent<Animator>(); }
-        if(!m_rigidBody) { gameObject.GetComponent<Animator>(); }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -90,8 +90,8 @@ public class ZombieCharacterControl : MonoBehaviour
     {
         switch(m_controlMode)
         {
-            case ControlMode.Tank:
-                TankUpdate();
+            case ControlMode.Walk:
+                DefaultUpdate();
                 break;
 
             default:
@@ -99,9 +99,8 @@ public class ZombieCharacterControl : MonoBehaviour
                 break;
         }
     }
-    private void TankUpdate()
+    private void DefaultUpdate()
     {
-        transform.position += transform.forward * m_moveSpeed * m_currentV * Time.deltaTime;
         m_animator.SetFloat("MoveSpeed", m_moveSpeed * 100);
     }
 
