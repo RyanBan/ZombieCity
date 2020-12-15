@@ -11,6 +11,8 @@ TagManager:
   - Stop2
   - Trafficlight
   - Stop1
+  - RedLight
+  - GreenLight
   layers:
   - Default
   - TransparentFX

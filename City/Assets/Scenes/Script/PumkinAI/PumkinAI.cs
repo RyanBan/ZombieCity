@@ -5,11 +5,11 @@ using UnityEngine;
 public class PumkinAI : MonoBehaviour
 {
     // General state machine variables
-    private GameObject player;
+    private GameObject light;
     private Animator animator;
     private Ray ray;
     private RaycastHit hit;
-    private float maxDistanceToCheck = 6.0f;
+    private float maxDistanceToCheck = 30.0f;
     private float currentDistance;
     private Vector3 checkDirection;
 
@@ -25,10 +25,17 @@ public class PumkinAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
+        if(GameObject.FindWithTag("RedLight") == null)
+        {
+            light = GameObject.FindWithTag("GreenLight");
+        }
+        if(GameObject.FindWithTag("GreenLight") == null)
+        {
+            light = GameObject.FindWithTag("RedLight");
+        }
         animator = gameObject.GetComponent<Animator>();
-        pointA = GameObject.Find("p1").transform;
-        pointB = GameObject.Find("p2").transform;
+        //pointA = GameObject.Find("p1").transform;
+        //pointB = GameObject.Find("p2").transform;
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
         waypoints = new Transform[2] {
             pointA,
@@ -40,29 +47,24 @@ public class PumkinAI : MonoBehaviour
     private void FixedUpdate()
     {
         //First we check distance from the player 
-        currentDistance = Vector3.Distance(player.transform.position, transform.position);
+        currentDistance = Vector3.Distance(light.transform.position, transform.position);
         animator.SetFloat("distanceFromPlayer", currentDistance);
 
         //Then we check for visibility
-        checkDirection = player.transform.position - transform.position;
+        checkDirection = light.transform.position - transform.position;
         ray = new Ray(transform.position, checkDirection);
         if (Physics.Raycast(ray, out hit, maxDistanceToCheck))
         {
-            if (hit.collider.gameObject == player)
+            if (hit.collider.gameObject.tag == "RedLight")
             {
-                animator.SetBool("isPlayerVisible", true);
-                Debug.Log("visible");
+                navMeshAgent.ResetPath();
             }
-            else
+            if(hit.collider.gameObject.tag == "GreenLight")
             {
-               animator.SetBool("isPlayerVisible", false);
-                Debug.Log("dissapear");
+                navMeshAgent.SetDestination(waypoints[currentTarget].position);
             }
         }
-        else
-        {
-            animator.SetBool("isPlayerVisible", false);
-        }
+     
 
         //Lastly, we get the distance to the next waypoint target
         distanceFromTarget = Vector3.Distance(waypoints[currentTarget].position, transform.position);
